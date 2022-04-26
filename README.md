@@ -1,7 +1,7 @@
 
 # Gin Websocket Boilerplate
 
-This is a simple boilerplate for websocket using gin
+This is a simple boilerplate websocket server using gin
 
 ## Getting Started
 
