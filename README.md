@@ -20,7 +20,7 @@ This is a simple boilerplate websocket server using gin
 
 ## Authors
 
-Contributors names and contact info
+Contributors name
 
 Baran Gayretli 
 
