@@ -1,26 +1,67 @@
+# Gin WebSocket Boilerplate
 
-# Gin Websocket Boilerplate
+Minimal Go/Gin boilerplate that streams `docker ps` output to the browser over WebSocket.
 
-This is a simple boilerplate websocket server using gin
+## Features
 
-## Getting Started
+- WebSocket streaming with gorilla/websocket
+- Embedded HTML client (`go:embed`)
+- Health check endpoint
+- Graceful shutdown (SIGINT/SIGTERM)
+- Multi-stage Dockerfile
 
-### Dependencies
+## Quick Start
 
-* gin-gonic
-* gorilla
+```bash
+make run
+# Open http://localhost:8000
+```
 
-### Running
+## Configuration
 
-* go to localhost:8000
-* simply click send to see the stream of logs
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `PORT`   | `8000`  | Server listen port |
 
-### Notes
-* test.html is to observe whether the logs are flowing or not 
+## Endpoints
 
-## Authors
+| Method | Path      | Description |
+|--------|-----------|-------------|
+| GET    | `/`       | WebSocket test client |
+| GET    | `/ws`     | WebSocket endpoint (streams `docker ps`) |
+| GET    | `/health` | Health check |
 
-Contributors name
+## Docker
 
-Baran Gayretli 
+```bash
+make docker-build
+make docker-run
+```
 
+## Project Structure
+
+```
+main.go              # Entrypoint, graceful shutdown
+handler/
+  websocket.go       # WebSocket handler
+  health.go          # Health endpoint
+router/
+  router.go          # Route definitions
+  router_test.go     # Integration tests
+web/
+  web.go             # go:embed for HTML
+  test.html          # WebSocket test client
+```
+
+## Development
+
+```bash
+make build    # Build binary
+make run      # Build and run
+make test     # Run tests
+make lint     # Run go vet
+```
+
+## Author
+
+Baran Gayretli
